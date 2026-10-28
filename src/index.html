@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nova booking widget – harness</title>
+    <style>
+      /* Deliberately hostile global CSS to verify Shadow DOM isolation. */
+      * { color: hotpink !important; font-family: 'Comic Sans MS', cursive !important; }
+      div, input, label, button, a, h2, p, header, form { border: 3px dashed lime !important; padding: 9px !important; margin: 4px !important; background: yellow !important; letter-spacing: 4px !important; }
+      input { height: 10px !important; }
+      body { font-size: 22px; }
+    </style>
+  </head>
+  <body>
+    <h1>Fake Cargo page</h1>
+    <button id="book-now" type="button">Book Now</button>
+    <button id="reload" type="button">Load script again</button>
+    <button id="cycle" type="button">Open/close x50</button>
+    <button id="destroy" type="button">Destroy</button>
+    <p>Widget host elements in DOM: <b id="count">?</b></p>
+    <div style="height: 150vh">Tall content to check scroll locking.</div>
+
+    <script>
+      // `?dist` tests the real built artifact; default uses live source.
+      const src = location.search.includes('dist') ? '/dist/widget.js' : '/src/widget/index.tsx';
+      const load = () => {
+        const s = document.createElement('script');
+        s.src = src;
+        if (src.endsWith('.tsx')) s.type = 'module';
+        document.head.appendChild(s);
+        s.onload = () => setTimeout(count, 50);
+      };
+      const count = () =>
+        (document.getElementById('count').textContent =
+          document.querySelectorAll('[data-nova-booking]').length);
+      load();
+      document.getElementById('book-now').onclick = () => { NovaBooking.open(); count(); };
+      document.getElementById('reload').onclick = load;
+      document.getElementById('destroy').onclick = () => { NovaBooking.destroy(); count(); };
+      document.getElementById('cycle').onclick = () => {
+        for (let i = 0; i < 50; i++) { NovaBooking.open(); NovaBooking.close(); }
+        count();
+      };
+    </script>
+  </body>
+</html>

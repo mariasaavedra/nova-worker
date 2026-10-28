@@ -1,0 +1,12 @@
+{
+  "name": "nova-booking-widget",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open /src/index.html",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite build && vite --open /src/index.html?dist"
+  }
+}

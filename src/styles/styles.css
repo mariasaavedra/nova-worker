@@ -1,0 +1,172 @@
+:host {
+  all: initial;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.nb-root {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #111;
+}
+
+.nb-root *,
+.nb-root *::before,
+.nb-root *::after {
+  box-sizing: border-box;
+}
+
+.nb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  animation: nb-fade 0.2s ease-out;
+}
+
+.nb-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.2);
+  animation: nb-slide 0.25s ease-out;
+}
+
+.nb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nb-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.nb-close {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nb-close:hover {
+  background: #f0f0f0;
+}
+
+.nb-form {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+.nb-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.nb-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+}
+
+.nb-field input[aria-invalid='true'] {
+  border-color: #c0392b;
+}
+
+.nb-error {
+  margin: 6px 0 0;
+  color: #c0392b;
+  font-size: 0.875rem;
+}
+
+.nb-search {
+  display: block;
+  width: 100%;
+  height: 52px;
+  border: 0;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  line-height: 52px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nb-search:hover {
+  background: #333;
+}
+
+.nb-note {
+  margin: 0;
+  color: #666;
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.nb-root :focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+@keyframes nb-slide {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes nb-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .nb-panel {
+    max-width: none;
+  }
+  /* 16px+ inputs prevent iOS Safari zoom-on-focus */
+  .nb-field input {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-panel,
+  .nb-backdrop {
+    animation: none;
+  }
+}
