@@ -7,13 +7,22 @@
 }
 
 .nb-root {
+  /* Brand palette, sampled from the No Vacancy site. */
+  --nb-maroon: #3a0502;
+  --nb-maroon-light: #5a1a14;
+  --nb-gold: #e3c370;
+  --nb-gold-hover: #efd388;
+  --nb-cream: #fffdee;
+  --nb-error: #ff9d8a;
+  --nb-display: 'Cooper Black', 'Cooper Std', 'Bookman Old Style', Georgia, serif;
+
   position: fixed;
   inset: 0;
   z-index: 2147483000;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  color: #111;
+  color: var(--nb-cream);
 }
 
 .nb-root *,
@@ -25,7 +34,7 @@
 .nb-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(30, 3, 1, 0.65);
   animation: nb-fade 0.2s ease-out;
 }
 
@@ -35,11 +44,12 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.2);
+  background: var(--nb-maroon);
+  border-radius: 24px 0 0 24px;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
   animation: nb-slide 0.25s ease-out;
 }
 
@@ -47,30 +57,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 28px 32px 8px;
 }
 
 .nb-header h2 {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  color: var(--nb-gold);
+  font-family: var(--nb-display);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
 .nb-close {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: inherit;
-  font-size: 28px;
+  color: var(--nb-cream);
+  font-size: 32px;
   line-height: 1;
   cursor: pointer;
 }
 
 .nb-close:hover {
-  background: #f0f0f0;
+  background: var(--nb-maroon-light);
+  color: var(--nb-gold);
 }
 
 .nb-form {
@@ -78,67 +92,104 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 24px;
+  gap: 22px;
+  padding: 24px 32px 32px;
 }
 
 .nb-field label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--nb-cream);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .nb-field input {
   width: 100%;
-  height: 48px;
-  padding: 0 12px;
-  border: 1px solid #bbb;
-  border-radius: 6px;
+  height: 52px;
+  padding: 0 16px;
+  border: 2px solid transparent;
+  border-radius: 12px;
   background: #fff;
-  color: #111;
+  color: var(--nb-maroon);
   font: inherit;
 }
 
+.nb-field input[type='date'] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  display: block;
+  min-height: 52px;
+  padding-right: 44px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%233a0502' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E") no-repeat right 16px center;
+}
+
+/* Whole field opens the picker; the icon above replaces the native one. */
+.nb-field input[type='date']::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Replace the native "mm/dd/yyyy" with a simple prompt while empty. */
+.nb-field input[type='date'][data-empty='true']::-webkit-datetime-edit {
+  display: none;
+}
+
+.nb-field input[type='date'][data-empty='true']::before {
+  content: attr(placeholder);
+  color: #8a6d68;
+}
+
 .nb-field input[aria-invalid='true'] {
-  border-color: #c0392b;
+  border-color: var(--nb-error);
 }
 
 .nb-error {
-  margin: 6px 0 0;
-  color: #c0392b;
+  margin: 8px 0 0;
+  color: var(--nb-error);
   font-size: 0.875rem;
 }
 
 .nb-search {
   display: block;
   width: 100%;
-  height: 52px;
+  margin-top: 6px;
+  padding: 14px 16px;
   border: 0;
-  border-radius: 6px;
-  background: #111;
-  color: #fff;
-  font: inherit;
-  font-weight: 600;
-  line-height: 52px;
+  border-radius: 12px;
+  background: var(--nb-gold);
+  color: var(--nb-maroon);
+  font-family: var(--nb-display);
+  font-style: italic;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  transition: background 0.15s;
 }
 
 .nb-search:hover {
-  background: #333;
+  background: var(--nb-gold-hover);
 }
 
 .nb-note {
   margin: 0;
-  color: #666;
+  color: rgba(255, 253, 238, 0.7);
   font-size: 0.8125rem;
   text-align: center;
 }
 
 .nb-root :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--nb-gold);
   outline-offset: 2px;
 }
 
@@ -157,6 +208,13 @@
 @media (max-width: 600px) {
   .nb-panel {
     max-width: none;
+    border-radius: 0;
+  }
+  .nb-header {
+    padding: 20px 20px 4px;
+  }
+  .nb-form {
+    padding: 20px;
   }
   /* 16px+ inputs prevent iOS Safari zoom-on-focus */
   .nb-field input {

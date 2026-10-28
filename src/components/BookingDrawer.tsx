@@ -59,6 +59,8 @@ export function BookingDrawer({ open, onClose, root }: Props) {
             <input
               id="nb-checkin"
               type="date"
+              placeholder="Select date"
+              data-empty={!form.checkin}
               min={minCheckin}
               value={form.checkin}
               aria-invalid={!!shown.checkin}
@@ -69,6 +71,8 @@ export function BookingDrawer({ open, onClose, root }: Props) {
             <input
               id="nb-checkout"
               type="date"
+              placeholder="Select date"
+              data-empty={!form.checkout}
               min={minCheckout}
               value={form.checkout}
               aria-invalid={!!shown.checkout}
