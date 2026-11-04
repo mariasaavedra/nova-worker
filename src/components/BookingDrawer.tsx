@@ -48,7 +48,7 @@ export function BookingDrawer({ open, onClose, root }: Props) {
         aria-labelledby="nb-title"
       >
         <header className="nb-header">
-          <h2 id="nb-title">Book your stay</h2>
+          <h2 id="nb-title">Book now</h2>
           <button type="button" className="nb-close" aria-label="Close booking panel" onClick={onClose}>
             ×
           </button>

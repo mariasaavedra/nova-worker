@@ -1,7 +1,5 @@
 :host {
   all: initial;
-  /* Let the host site (Cargo) decide the typeface. */
-  font-family: inherit;
 }
 
 [hidden] {
@@ -20,6 +18,8 @@
   position: fixed;
   inset: 0;
   z-index: 2147483000;
+  /* Founders Grotesk is loaded by the host Cargo page's own @font-face rules. */
+  font-family: 'Founders Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
   color: var(--nb-cream);
@@ -64,6 +64,7 @@
   margin: 0;
   color: var(--nb-gold);
   font-style: italic;
+  text-transform: uppercase;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
