@@ -100,11 +100,11 @@ export function BookingDrawer({ open, onClose, root }: Props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Search availability
+              Availability
             </a>
           ) : (
             <button type="button" className="nb-search" onClick={() => setShowErrors(true)}>
-              Search availability
+              Availability
             </button>
           )}
           <p className="nb-note">You’ll see rooms and prices on our secure booking page.</p>

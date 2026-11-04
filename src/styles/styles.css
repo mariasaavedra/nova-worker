@@ -166,9 +166,10 @@
   border-radius: 12px;
   background: var(--nb-gold);
   color: var(--nb-maroon);
-  font-style: italic;
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-family: 'Pinyon Script', 'Times', 'Times New Roman', serif;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: 400;
   line-height: 1.2;
   text-align: center;
   text-decoration: none;

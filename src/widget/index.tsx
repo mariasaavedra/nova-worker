@@ -26,8 +26,22 @@ function render() {
   root.render(<BookingDrawer open={isOpen} onClose={close} root={shadow} />);
 }
 
+// @font-face inside a shadow root is unreliable, so the font is loaded by a
+// <link> in the host page's <head>; the shadow tree then resolves it by name.
+const FONT_LINK_ID = 'nova-booking-fonts';
+
+function loadFonts() {
+  if (document.getElementById(FONT_LINK_ID)) return;
+  const link = document.createElement('link');
+  link.id = FONT_LINK_ID;
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap';
+  document.head.appendChild(link);
+}
+
 function mount() {
   if (host) return;
+  loadFonts();
   host = document.createElement('div');
   host.setAttribute(HOST_ATTR, '');
   // Zero-size fixed host so it never takes part in the page's layout. The
