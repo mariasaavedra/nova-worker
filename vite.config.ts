@@ -14,8 +14,5 @@ export default defineConfig({
       fileName: () => 'widget.js',
     },
     cssCodeSplit: false,
-    rollupOptions: {
-      output: { inlineDynamicImports: true },
-    },
   },
 });

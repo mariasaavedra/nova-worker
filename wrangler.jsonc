@@ -1,0 +1,6 @@
+{
+  "name": "nova-booking",
+  "account_id": "7bde3f47157edae7498dabfa3b956a36",
+  "compatibility_date": "2026-10-27",
+  "assets": { "directory": "./dist" }
+}

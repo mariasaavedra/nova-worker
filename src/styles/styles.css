@@ -1,5 +1,7 @@
 :host {
   all: initial;
+  /* Let the host site (Cargo) decide the typeface. */
+  font-family: inherit;
 }
 
 [hidden] {
@@ -14,12 +16,10 @@
   --nb-gold-hover: #efd388;
   --nb-cream: #fffdee;
   --nb-error: #ff9d8a;
-  --nb-display: 'Cooper Black', 'Cooper Std', 'Bookman Old Style', Georgia, serif;
 
   position: fixed;
   inset: 0;
   z-index: 2147483000;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.4;
   color: var(--nb-cream);
@@ -63,7 +63,6 @@
 .nb-header h2 {
   margin: 0;
   color: var(--nb-gold);
-  font-family: var(--nb-display);
   font-style: italic;
   font-size: 2rem;
   font-weight: 700;
@@ -166,7 +165,6 @@
   border-radius: 12px;
   background: var(--nb-gold);
   color: var(--nb-maroon);
-  font-family: var(--nb-display);
   font-style: italic;
   font-size: 1.75rem;
   font-weight: 700;

@@ -30,8 +30,11 @@ function mount() {
   if (host) return;
   host = document.createElement('div');
   host.setAttribute(HOST_ATTR, '');
-  // Zero-size fixed host so it never takes part in the page's layout.
-  host.style.cssText = 'position:fixed;top:0;left:0;width:0;height:0;';
+  // Zero-size fixed host so it never takes part in the page's layout. The
+  // z-index must live on the host: z-index inside the shadow root can't lift
+  // it above the host page's own stacking contexts (e.g. a sticky nav).
+  host.style.cssText =
+    'position:fixed;top:0;left:0;width:0;height:0;z-index:2147483647;';
   shadow = host.attachShadow({ mode: 'open' });
   const style = document.createElement('style');
   style.textContent = css;
